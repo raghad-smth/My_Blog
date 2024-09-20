@@ -1,0 +1,92 @@
+
+.space{
+    padding:10rem;
+}
+.posts-wrapper{
+    padding: 4rem 2rem;
+}
+
+
+.search-bar-wraper{
+    text-align: end;
+    margin-left:auto;
+    margin-right:2rem;
+    max-width: 25rem;
+    background-color: rgb(255, 255, 255);
+    padding:0;
+    border-radius: 50px;
+    margin-bottom: 6rem;
+}
+.search-bar{
+    padding: 0.7vw;
+    width: 20rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    outline:none;
+    font-family: "Merriweather";
+}
+
+.show{
+    opacity: 1;
+  }
+.fa.fa-search{
+    margin:0.5rem 0;
+    color: #848484;
+}
+
+@media (max-width:870px){
+    .post-wrapper{
+        padding:10rem;
+    }
+}
+
+
+
+
+
+.post-body-wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.post-img-warpper{
+    height:100vh;
+    width:50vw;
+    /* width: 100%; */
+}
+
+.post-img-warpper > img{
+     height:100%;
+     width:100%;
+     border-radius: 50px;
+}
+
+.post-title{
+    /* width:100%; */
+    text-align: center;
+}
+.header-divider{
+    /* width:100%; */
+}
+.post-body{
+    width:60%;
+    max-width: 740px;
+}
+
+.date-section{
+    display: grid;
+    grid-template-columns: 1fr 2fr ;
+    
+} 
+
+.comment-section{
+    width: 100%;
+}
+
+.reply-btn{
+     margin-left:auto;
+}
+
+
