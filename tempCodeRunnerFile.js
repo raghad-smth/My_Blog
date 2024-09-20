@@ -1,1 +1,1 @@
- // res.sendFile(path.join(__dirname, 'index.html'));
+/post/api/:id
