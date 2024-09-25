@@ -1,0 +1,112 @@
+body, html {
+    height: 100%; 
+    margin: 0; 
+}
+
+
+.contact-wrapper {
+  margin-top: 1.5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40rem;
+}
+.contact > h2{
+    font-size: 2rem;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  position:relative;
+}
+.input-style {
+  padding: 0.9rem;
+}
+
+#submit-btn {
+  padding: 1.3rem;
+}
+
+.contact-form {
+ background-color: rgb(168, 161, 136);
+  padding:2rem 3rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+.input-style {
+  width: 100%;
+  padding: 10px;
+  height: 25px;
+  border-radius: 40px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  outline: none;
+  border: none;
+  background-color: rgb(168, 161, 136);
+  font-family: "Barlow Condensed", sans-serif;
+}
+.input-style:focus {
+  border-color: #96852f;
+  box-shadow: 0 6px 15px rgba(150, 133, 47, 0.7); 
+  background-color: rgb(168, 161, 136);
+}
+
+input:-webkit-autofill{
+    -webkit-box-shadow: rgb(168, 161, 136); 
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+#message-box {
+  height: 12em;
+  border-radius: 30px;
+  border:2px solid  #ced16b;;
+  background-color: rgb(168, 161, 136);
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+#message-box:focus{
+    outline: none;
+    border-color: #96852f;
+    box-shadow: 0 6px 15px rgba(150, 133, 47, 0.7); 
+    background-color: rgb(168, 161, 136);
+}
+#submit-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 40px;
+  background-color: #ced16b;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.6s;
+  box-shadow: 0 6px 15px rgba(150, 133, 47, 0.7); 
+}
+#submit-btn:hover {
+  background-color: #96852f;
+}
+
+.contact-form>label{
+  position:relative;
+  top:22px;
+  left:20px;
+  background-color: rgb(168, 161, 136);
+  width:73px;
+  font-size:20px;
+}
+.contact-form > input{
+    border:none;
+    border:2px solid #ced16b;
+    background-color: rgb(168, 161, 136);
+}
+#email-label{
+    width:37px;
+}
+
+#messg-label{
+ width:57px;
+}
+
+#thank-you-message{
+    font-size: 2rem;
+}

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="/logo.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
@@ -17,7 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script defer src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script defer src="script.js"></script>
-    
+    <script defer src="index.js"></script>
+
 
 
 </head>
@@ -26,8 +28,9 @@
 
 
     <div class="header">
-        <span class="logo">logo</span>
-
+        <div class="logo-wrapper">
+        </div>
+        
         <div class="nav-bar-wrapper">
             <div class="nav-bar">
                 <a class="nav-link" href="/">HOME</a>
@@ -36,22 +39,23 @@
                 <a class="nav-link" href="/contact">CONTACT</a>
             </div>
         </div>
-    </div>
-    <div class="small-dev-wrapper">
         <button id="menu-btn" class="fa fa-bars" aria-hidden="true"></button>
-        <div class="small-dev-menu">
-            <ul>
-                <li><a class="nav-link" href="index.html">HOME</a></li>
-                <li><a class="nav-link" href="posts.html">POSTS</a></li>
-                <li><a class="nav-link" href="about.html">ABOUT</a></li>
-                <li><a class="nav-link" href="contact.html">CONTACT</a></li>
-            </ul>
-        </div>
     </div>
+    <div class="small-screens-nav">
+        <a class="nav-link" href="/">HOME</a>
+        <a class="nav-link" href="/posts">POSTS</a>
+        <a class="nav-link" href="/about">ABOUT</a>
+        <a class="nav-link" href="/contact">CONTACT</a>
+    </div>
+
+
+
+
 
 
     <div class="hero-title">
         <h1>Welcom,join me for<span class="auto-type"></span></h1>
+        <div class="sparks"></div>
     </div>
 
 
@@ -66,12 +70,12 @@
             </svg>
         </div>
         <div class="fav-posts">
-            <h1 class="subtitle fav-posts-header">Personal Favourits</h1>
+            <h1 class="fav-posts-header">Personal Favourits</h1>
         </div>
     </div>
 
     <div class="latest-posts">
-        <h1 class="subtitle latest-posts-header">Lates Posts</h1><br>
+        <h1 class="latest-posts-header">Lates Posts</h1><br>
     </div>
     <!-- <div clasa="scroll-section">
         <div class="logo-show"></div>
@@ -93,14 +97,13 @@
         <div class="site-map">
             <h2 class="footer-title">Pages</h2>
             <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="posts.html">POSTS</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/posts">POSTS</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/contact">CONTACT</a></li>
             </ul>
         </div>
-        <div class="logo-side">
-            <span class="logo">logo</span>
+        <div class="logo-footer">
         </div>
     </div>
 

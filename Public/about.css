@@ -1,11 +1,15 @@
+.about-wrapper{
+    display:grid; 
+    align-items: center;
+    justify-items: center;
+}
+
+
 .about-me-intro{
     display:grid;
     grid-template-columns: 1fr 2fr;
-    gap:2rem;
+    gap:5rem;
     max-width:70rem;
-    position: relative;
-    top: 50%;
-    left:10%;
     padding-bottom: 8rem;
 }
 
@@ -23,7 +27,10 @@
     animation-fill-mode:forwards;
 }
 
-
+li > img {
+    width:20px;
+    height:20px;
+}
 
 @keyframes appear{
     0%{
@@ -51,22 +58,34 @@
 
 
 .profile-img{
-    height:390px;
-    width:auto;
+    height:300px;
+    width: 12vw;
+    align-self: center;
+    justify-self: center;
+    border: 9px solid transparent;
+    border-top-left-radius: 200px;
+    border-top-right-radius: 200px;
+    overflow: hidden; 
+    background-size:contain;
+    background-image: url(img-fram.jpg);
+    padding:10px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); 
 }
 .profile-img > img {
-   height:100%;
+    display: block; 
+   height:auto;
    width:100%;
    object-fit: cover;
    border-top-left-radius: 200px;
    border-top-right-radius: 200px;
-   box-shadow: 4px 4px 6px rgb(0,0,0,0.7);
    transition: 1s ease;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
 }
 
-.profile-img > img:hover{
+.scale{
      cursor:pointer;
      transform:scale(1.2);
+     transition: transform 1s ease; 
 }
 li {
     list-style: none;
@@ -81,7 +100,7 @@ li {
 }
 .philosophy{
     background-position: start;
-    background-image: url(philosaphy-background.png);
+    background-image: url(wavy.png);
     background-size: cover;
 }
 
@@ -95,7 +114,7 @@ li {
 .random-facts{
     background-position: center;
     background-size: cover; 
-    background-image: url(random-background.png);
+    background-image: url(secondWavy.png);
 }
 .about-imgs{
     position: absolute;
@@ -131,11 +150,14 @@ li {
    margin-right:0;
 }
 
-@media (max-width:520px){
+@media (max-width:870px){
     .about-me-intro{
         grid-template-columns: 1fr;
         margin:2rem ;
         position: static;
+    }
+    .profile-img{
+        width:40vw;
     }
     .about-svgs{
         width:auto;

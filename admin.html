@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+
+    div{
+        position: absolute;
+        top:60%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    input ,textarea{
+        display: block;
+        margin:2rem;
+        padding:1rem;
+        width:70vw;
+
+    }
+    textarea{
+        min-height:40vh;
+    }
+</style>
+<body>
+    
+    <div class="header">
+        <div class="logo-wrapper">
+        </div>
+        <div class="nav-bar-wrapper">
+            <div class="nav-bar">
+                <a class="nav-link" href="/">HOME</a>
+                <a class="nav-link" href="/posts">POSTS</a>
+                <a class="nav-link" href="/about">ABOUT</a>
+                <a class="nav-link" href="/contact">CONTACT</a>
+            </div>
+        </div>
+        <button id="menu-btn" class="fa fa-bars" aria-hidden="true"></button> 
+    </div>
+    <div class="small-screens-nav">
+        <a class="nav-link" href="/">HOME</a>
+        <a class="nav-link" href="/posts">POSTS</a>
+        <a class="nav-link" href="/about">ABOUT</a>
+        <a class="nav-link" href="/contact">CONTACT</a>
+    </div>
+    <div>
+        <h2>Hey love, What are we writting today?</h2>
+        <form id="postForm">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="url" name="image_url" placeholder="Image URL" required>
+            <textarea name="content" placeholder="Content" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('postForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            const response = await fetch('http://localhost:3000/admin/newPost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Post created successfully!');
+            } else {
+                alert('Error creating post.');
+            }
+        });
+    </script>
+
+</body>
+</html>

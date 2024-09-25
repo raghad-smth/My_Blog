@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="posts.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="/logo.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
@@ -16,87 +17,71 @@
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script defer src="viewPost.js" defer></script>
-    
+    <script defer src="viewPost.js" ></script>
+    <script defer src="script.js" ></script>
+
 </head>
 
 <body>
+  
     <div class="header">
-        <span class="logo">logo</span>
-
+        
+        <div class="logo-wrapper">
+        </div>
+       
         <div class="nav-bar-wrapper">
             <div class="nav-bar">
-                <a class="nav-link" href="index.html">HOME</a>
-                <a class="nav-link" href="posts.html">POSTS</a>
-                <a class="nav-link" href="about.html">ABOUT</a>
-                <a class="nav-link" href="contact.html">CONTACT</a>
+                <a class="nav-link" href="/">HOME</a>
+                <a class="nav-link" href="/posts">POSTS</a>
+                <a class="nav-link" href="/about">ABOUT</a>
+                <a class="nav-link" href="/contact">CONTACT</a>
             </div>
         </div>
+        <button id="menu-btn" class="fa fa-bars" aria-hidden="true"></button> 
+    </div>
+    <div class="small-screens-nav">
+        <a class="nav-link" href="/">HOME</a>
+        <a class="nav-link" href="/posts">POSTS</a>
+        <a class="nav-link" href="/about">ABOUT</a>
+        <a class="nav-link" href="/contact">CONTACT</a>
     </div>
 
 
     <div class="post-body-wrapper">
-        <div claas="post-header">
-            <h1 class="post-title">A Very Low-Key Fall Checklist</h1>
-          
-            <div class="post-img-warpper">
-                <img alt="post img" src="https://i.pinimg.com/564x/aa/90/ca/aa90ca49e46887c4358d364eb35a5d08.jpg">
-            </div>
-
-
+        <h1 class="post-title"></h1>
+        <div class="post-img-warpper">
+            <img>
         </div>
-
-
-        <div class="post-body">
-            <p class="body-pargrap">What’s on your fall checklist? The weather’s getting crisper, we’ve stocked the
-                fridge
-                with apples, and I’m excited to queue up my comfort movie. Here are seven more laid-back things to do…
-            </p>
-            <p>Go shopping in an actual store. Over the weekend, I popped into Sézane in Manhattan to check out their
-                fall
-                pieces, and it was such a treat. The store is beautiful with velvet dressing room curtains and friendly
-                shop
-                girls. I tried a bunch of everyday pieces, like a patent leather bag (which comes in four colors), an
-                oversized trench (the pretty lining!), and leopard shoes (would look cute with jeans). Afterward, I
-                grabbed
-                a coffee and walked home in the sunshine — the whole morning was so much fun.F</p>
-
-            <p>o apple picking. My friend Alison just took her two kids to Fishkill Farms and gave it rave reviews. “We
-                do
-                this every year,” she told us. “The farm has everything you want: apples, pears, flowers, and a tractor
-                that
-                takes you around the farm. By the end of our day, the kids were covered in dirt and so happy.” Bonus:
-                the
-                next morning, you can make apple pancakes.</p>
-
-            <p>Find the best egg sandwich/banana bread/croissant/cookie/you-name-it. Last week, I was texting with a
-                friend
-                who’s going through a hard time. We were brainstorming fun activities we could do to get her mind off
-                things
-                and decided to search for the best chocolate chip cookies in Brooklyn. Do you have any places you swear
-                by?
-                (So far, L’Appartement 4F is in the lead.)</p>
-
-                <hr class="header-divider">
-
-                <div class="comment-section">
-                    <h4 class="user-name">Janey says</h4>
-                    <p class="comment-content">
-                        September 10, 2024 5:29 pm
-                        My boys are 24, 19, 17 and so lovely, like 3 fun interesting, hilarious friends. One of the many things
-                        I love about them at these ages is their fun, interesting, hilarious girlfriends who are truly a joy.
-                        It’s like I have 3 extra bonus kids/friends around the place. I appreciate having them all in my life!
-                    </p>
-                    <div class="date-section">
-                        <span class="date">September 10, 2024 5:29 pm</span>
-                         <button class="reply-btn">Reply</button>
-                    </div>
-        
-                </div>
-        </div>
-
-
+        <p class="body-pargrap"></p>
+        <hr class="header-divider">
+      
     </div>
+ 
+
+<div class="comments-section-wrapper">
+
+    <div class="comment-section">
+        <button id="commetning-btn" type="submit">Add Comment</button>
+        <form id="comment-form"  method="post">
+            <input id="name-input" placeholder="Nickname" required>
+            <input id="comment-input" placeholder="Share your mind...." required>
+            <button type="submit" class="send-comment-btn">Send</button>
+        </form>
+        <div class="comment">
+            <h4 class="user-name"></h4>
+            <p class="comment-content"></p>
+                <span class="date"></span>
+        </div>
+    
+    </div>
+
+</div>
+ 
+
+
+
+
+
 
 
 
@@ -114,14 +99,13 @@
         <div class="site-map">
             <h2 class="footer-title">Pages</h2>
             <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="posts.html">POSTS</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/posts">POSTS</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/contact">CONTACT</a></li>
             </ul>
         </div>
-        <div class="logo-side">
-            <span class="logo">logo</span>
+        <div class="logo-footer">
         </div>
     </div>
 

@@ -6,75 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="/logo.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <script defer src="contact.js"></script>
+
 </head>
 
 <body>
+
     <div class="header">
-        <span class="logo">logo</span>
+       
+        <div class="logo-wrapper">
+        </div>
+       
         <div class="nav-bar-wrapper">
-        <div class="nav-bar">
-            <a class="nav-link" href="/">HOME</a>
-            <a class="nav-link" href="/posts">POSTS</a>
-            <a class="nav-link" href="/about">ABOUT</a>
-            <a class="nav-link" href="/contact">CONTACT</a>
+            <div class="nav-bar">
+                <a class="nav-link" href="/">HOME</a>
+                <a class="nav-link" href="/posts">POSTS</a>
+                <a class="nav-link" href="/about">ABOUT</a>
+                <a class="nav-link" href="/contact">CONTACT</a>
+            </div>
         </div>
-        </div>
+        <button id="menu-btn" class="fa fa-bars" aria-hidden="true"></button> 
     </div>
+    <div class="small-screens-nav">
+        <a class="nav-link" href="/">HOME</a>
+        <a class="nav-link" href="/posts">POSTS</a>
+        <a class="nav-link" href="/about">ABOUT</a>
+        <a class="nav-link" href="/contact">CONTACT</a>
+    </div>
+
+
     <div class="contact-wrapper">
         <div class="contact">
-            <div>
-                <h1>Get In Touch</h1>
-                <form>
+            <h2>Get In Touch</h2>
+                <form id="contact-form">
                     <div class="contact-form">
+                        <label>First Name</label>
+                        <input class="input-style" id="fname"  type="text">
+                        <section id="error-fName" style="color:#7b1f1f; display:none;"> </section>
 
-                        <input class="input-style" id="fname" placeholder="First Name" type="text">
-                        <input class="input-style" id="lname" placeholder="Last Name" type="text">
-                        <section id="error-name" style="display:none;"> </section>
+                        <label>Last Name</label>
+                        <input class="input-style" id="lname" type="text">
+                        <section id="error-lName" style="color:#7b1f1f; display:none;"> </section>
 
-                        <input class="input-style" id="email" placeholder="Email" type="email">
+                        <label id="email-label">Email</label>
+                        <input class="input-style" id="email" type="email">
                         <section id="error-mail" style="display:none;"> </section>
+                        <section id="email-validition" style="color:#7b1f1f; display:none;"> Please enter a valid email address</section>
 
-                        <textarea class="input-style" id="message-box" placeholder="Message"></textarea>
-                        <section id="error-msg" style="display:none;"> </section>
+                        <label id="messg-label">Message</label>
+                        <textarea class="input-style" id="message-box"></textarea>
+                        <section id="error-msg" style="color:#7b1f1f; display:none;"> </section>
 
                         <button id="submit-btn" type="submit">Submit</button>
 
                     </div>
                 </form>
-
+                <div id="thank-you-message" style="display: none; text-align: center; margin-top: 20px;">
+                    Thank you for contacting me, ♡!
+                </div>
             </div>
-</div>
+    </div>
 
     <div class="footer">
         <div class="contact-me">
             <h2 class="footer-title">Contact me</h2>
+            <ul class="socials">
+                <li> <a><i class="fa fa-pinterest"></i></li></a>
+                <li><a><i class="fa fa-instagram"></i></a> </li>
+                <li> <a><i class="fa fa-envelope"></i></a></li>
+                <li> <a><i class="fa fa-linkedin"></i></a></li>
+            </ul>
         </div>
         <div class="site-map">
             <h2 class="footer-title">Pages</h2>
             <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="posts.html">POSTS</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/posts">POSTS</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/contact">CONTACT</a></li>
             </ul>
         </div>
-        <div class="logo-side">
-            <span class="logo">logo</span>
+        <div class="logo-footer">
         </div>
     </div>
 
     <div class="copy-right">
         Copy Rights.
     </div>
-    <script src="script.js"></script>
+    
 </body>
  
 </html>
