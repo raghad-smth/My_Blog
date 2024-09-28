@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 const knex = require("knex")({
   client: "pg",
   connection: {
-    host: "127.0.0.1",
+    host: "https://raghoodi-production.up.railway.app/",
     port: 5432,
     user: "postgres",
     password: "Iaminlovewithjoy<3.",
