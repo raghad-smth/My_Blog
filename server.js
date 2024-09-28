@@ -1,4 +1,4 @@
-require("express");
+const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const bodyParser = require('body-parser');
@@ -21,7 +21,7 @@ const db = knex({
   pool: {
     min: 2, // Minimum number of connections
     max: 20, // Maximum number of connections
-    acquireTimeoutMillis: 90000000000, // Adjust as needed
+    acquireTimeoutMillis:300000, // Adjust as needed
   }
 });
 
