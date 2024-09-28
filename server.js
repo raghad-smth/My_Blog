@@ -5,10 +5,20 @@ const bodyParser = require('body-parser');
 const knex = require("knex");
 const app = express();
 
+// Middleware Setup
 app.use(cors());
 app.use(bodyParser.json());
 
-// Configure Knex with enhanced pool settings
+// Logging Middleware
+app.use(async (req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  res.on('finish', () => {
+    console.log(`Request completed: ${req.method} ${req.url} with status ${res.statusCode}`);
+  });
+  next();
+});
+
+// Configure Knex with adjusted pool settings
 const db = knex({
   client: "pg",
   connection: {
@@ -20,11 +30,13 @@ const db = knex({
   },
   pool: {
     min: 2,
-    max: 20, // Adjust based on your database server's capacity
+    max: 10, // Reduced from 20 to 10
     acquireTimeoutMillis: 30000, // 30 seconds
     createTimeoutMillis: 30000,
     idleTimeoutMillis: 30000,
-  }
+  },
+  // Enable debug mode in development
+  debug: false, // Set to true if you need detailed logs
 });
 
 // Serve static files from the "Public" directory
@@ -208,21 +220,26 @@ app.get("/contact", (req, res) => {
 
 // Start the Server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
 // Handle graceful shutdown
-process.on('SIGTERM', () => {
-  console.info('SIGTERM signal received.');
-  console.log('Closing database connection.');
-  db.destroy()
-    .then(() => {
-      console.log('Database connection closed.');
-      process.exit(0);
-    })
-    .catch((err) => {
-      console.error('Error closing database connection:', err);
-      process.exit(1);
-    });
-});
+const shutdown = () => {
+  console.log('Shutting down server...');
+  server.close(() => {
+    console.log('HTTP server closed.');
+    db.destroy()
+      .then(() => {
+        console.log('Database connections closed.');
+        process.exit(0);
+      })
+      .catch((err) => {
+        console.error('Error closing database connections:', err);
+        process.exit(1);
+      });
+  });
+};
+
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);
