@@ -3,41 +3,46 @@ const path = require("path");
 const cors = require("cors");
 const bodyParser = require('body-parser');
 const knex = require("knex");
+const dotenv = require('dotenv');
+const morgan = require('morgan');
+
+// Load environment variables from .env file
+dotenv.config();
+
 const app = express();
 
-// Middleware Setup
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(morgan('combined')); // HTTP request logger for better visibility
 
-// Logging Middleware
-app.use(async (req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url}`);
-  res.on('finish', () => {
-    console.log(`Request completed: ${req.method} ${req.url} with status ${res.statusCode}`);
-  });
-  next();
-});
-
-// Configure Knex with adjusted pool settings
+// Configure Knex with optimized pool settings
 const db = knex({
   client: "pg",
   connection: {
-    host: "raghoodi-production.up.railway.app",
-    port: 5432,
-    user: "postgres",
-    password: "Iaminlovewithjoy<3.",
-    database: "my_blog",
+    host: process.env.DB_HOST || "raghoodi-production.up.railway.app",
+    port: process.env.DB_PORT || 5432,
+    user: process.env.DB_USER || "postgres",
+    password: process.env.DB_PASSWORD || "Iaminlovewithjoy<3.",
+    database: process.env.DB_NAME || "my_blog",
+    ssl: {
+      rejectUnauthorized: false, // Adjust based on your setup; necessary for some hosted databases
+    },
   },
   pool: {
-    min: 2,
-    max: 10, // Reduced from 20 to 10
-    acquireTimeoutMillis: 30000, // 30 seconds
+    min: 2, // Minimum number of connections
+    max: 10, // Adjusted maximum number of connections based on typical Railway limits
+    acquireTimeoutMillis: 30000, // 30 seconds timeout
+    idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
     createTimeoutMillis: 30000,
-    idleTimeoutMillis: 30000,
+    destroyTimeoutMillis: 30000,
   },
-  // Enable debug mode in development
-  debug: false, // Set to true if you need detailed logs
+  acquireConnectionTimeout: 30000, // 30 seconds
 });
+
+// Optional: Log pool events for debugging
+// Note: Knex doesn't emit 'createRequest', 'acquireConnection', 'releaseConnection' by default.
+// To monitor connection pool events, consider using the `pg` library's events or external monitoring tools.
 
 // Serve static files from the "Public" directory
 app.use(express.static(path.join(__dirname, "Public")));
@@ -51,7 +56,7 @@ app.get("/", (req, res) => {
 app.get("/api/Favposts", async (req, res) => {
   try {
     const posts = await db('posts')
-      .select("*")
+      .select("id", "title", "image_url", "created_at") // Select only necessary columns
       .whereIn("id", [16, 9, 13, 15])
       .orderByRaw("CASE id WHEN 16 THEN 1 WHEN 9 THEN 2 WHEN 13 THEN 3 WHEN 15 THEN 4 END")
       .limit(4);
@@ -67,13 +72,13 @@ app.get("/api/Favposts", async (req, res) => {
 app.get("/api/latestPosts", async (req, res) => {
   try {
     const posts = await db('posts')
-      .select("*")
-      .orderBy("created_at", "desc") // Changed to 'desc' to get latest posts
+      .select("id", "title", "image_url", "created_at") // Select only necessary columns
+      .orderBy("created_at", "desc")
       .limit(6);
 
     const formattedPosts = posts.map(post => ({
       ...post,
-      created_at: post.created_at.toISOString().split('T')[0]
+      created_at: post.created_at.toISOString().split('T')[0],
     }));
 
     res.json(formattedPosts);
@@ -96,11 +101,11 @@ app.get("/posts", (req, res) => {
 // Route: All Posts API
 app.get("/posts/api", async (req, res) => {
   try {
-    const posts = await db('posts').select("*");
+    const posts = await db('posts').select("id", "title", "image_url", "created_at");
 
     const formattedPosts = posts.map(post => ({
       ...post,
-      created_at: post.created_at.toISOString().split('T')[0]
+      created_at: post.created_at.toISOString().split('T')[0],
     }));
 
     res.json(formattedPosts);
@@ -122,7 +127,7 @@ app.get("/post/api/:id", async (req, res) => {
   try {
     // Fetch the post
     const post = await db('posts')
-      .select("*")
+      .select("id", "title", "content", "image_url", "created_at")
       .where({ id: postId })
       .first();
 
@@ -132,19 +137,19 @@ app.get("/post/api/:id", async (req, res) => {
 
     // Fetch comments associated with the post
     const comments = await db('comments')
-      .select("*")
+      .select("id", "post_id", "name", "comment", "created_at")
       .where({ post_id: postId })
-      .orderBy("created_at", "asc"); // Optional: order comments by creation date
+      .orderBy("created_at", "asc");
 
     // Format dates if necessary
     const formattedComments = comments.map(comment => ({
       ...comment,
-      created_at: comment.created_at ? comment.created_at.toISOString().split('T')[0] : null
+      created_at: comment.created_at ? comment.created_at.toISOString().split('T')[0] : null,
     }));
 
     res.json({
       ...post,
-      comments: formattedComments
+      comments: formattedComments,
     });
   } catch (error) {
     console.error("Error fetching post and comments:", error);
@@ -168,11 +173,14 @@ app.post('/admin/newPost', async (req, res) => {
 
   try {
     await db.transaction(async (trx) => {
-      await trx('posts').insert({
-        title,
-        content,
-        image_url
-      });
+      await trx('posts')
+        .transacting(trx) // Explicitly bind to transaction
+        .insert({
+          title,
+          content,
+          image_url,
+          created_at: new Date(), // Ensure created_at is set
+        });
     });
 
     res.status(201).send('Post created successfully!');
@@ -194,16 +202,23 @@ app.post('/api/comments', async (req, res) => {
   try {
     await db.transaction(async (trx) => {
       // Optional: Check if the post exists
-      const postExists = await trx('posts').where({ id: post_id }).first();
+      const postExists = await trx('posts')
+        .transacting(trx) // Explicitly bind to transaction
+        .where({ id: post_id })
+        .first();
+
       if (!postExists) {
         throw new Error("Post does not exist.");
       }
 
-      await trx('comments').insert({ 
-        post_id, 
-        name, 
-        comment 
-      });
+      await trx('comments')
+        .transacting(trx) // Explicitly bind to transaction
+        .insert({
+          post_id,
+          name,
+          comment,
+          created_at: new Date(), // Ensure created_at is set
+        });
     });
 
     res.status(201).json({ name, comment });
@@ -220,26 +235,21 @@ app.get("/contact", (req, res) => {
 
 // Start the Server
 const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
 // Handle graceful shutdown
-const shutdown = () => {
-  console.log('Shutting down server...');
-  server.close(() => {
-    console.log('HTTP server closed.');
-    db.destroy()
-      .then(() => {
-        console.log('Database connections closed.');
-        process.exit(0);
-      })
-      .catch((err) => {
-        console.error('Error closing database connections:', err);
-        process.exit(1);
-      });
-  });
-};
-
-process.on('SIGTERM', shutdown);
-process.on('SIGINT', shutdown);
+process.on('SIGTERM', () => {
+  console.info('SIGTERM signal received.');
+  console.log('Closing database connection.');
+  db.destroy()
+    .then(() => {
+      console.log('Database connection closed.');
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error('Error closing database connection:', err);
+      process.exit(1);
+    });
+});
