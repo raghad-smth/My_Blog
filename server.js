@@ -17,6 +17,11 @@ const knex = require("knex")({
   },
 });
 
+
+//,
+  // "devDependencies": {
+  //   "nodemon": "^3.1.4"
+  // }
 app.use(express.static(path.join(__dirname, "Public")));
 
 app.get("/", (req, res) => {
