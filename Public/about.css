@@ -13,11 +13,13 @@
     padding-bottom: 8rem;
 }
 
+
 .animated-p{
-     padding-top: 5rem;
+     padding-top: 1rem;
      position: relative;
      bottom: -200px;
      opacity: 0;
+     font-size: 1.5rem;
 }
 
 .animate{
@@ -58,8 +60,8 @@ li > img {
 
 
 .profile-img{
-    height:300px;
-    width: 12vw;
+    height:350px;
+    width: 15vw;
     align-self: center;
     justify-self: center;
     border: 9px solid transparent;
@@ -89,8 +91,11 @@ li > img {
 }
 li {
     list-style: none;
-    margin-right:1rem;
     font-size: 1.5rem;
+    text-align: start;
+    line-height: 1.5;
+    margin:0.5rem 0.6rem;
+     max-width: 50ch;
 }
 .philosophy, .random-facts{
     display:flex;
@@ -104,10 +109,11 @@ li {
     background-size: cover;
 }
 
+
 .philosophy-list, .random-facts-list{
     display:grid;
     grid-template-columns: 0.2fr 2fr;
-    gap:1rem;
+    gap: 1px;
     bottom: -200px;
     opacity: 0;
 }
@@ -118,7 +124,6 @@ li {
 }
 .about-imgs{
     position: absolute;
-    /* z-index: 1; */
     height: 60vh;
     width:auto;
     overflow: hidden;
@@ -131,6 +136,7 @@ li {
     bottom: -200px;
     opacity: 0;
 }
+
 
 .about-lists > ul{
     margin-top:70px;
@@ -150,6 +156,11 @@ li {
    margin-right:0;
 }
 
+
+.my-name{
+    font-family: "GT Super", sans-serif;
+}
+
 @media (max-width:870px){
     .about-me-intro{
         grid-template-columns: 1fr;
@@ -165,6 +176,20 @@ li {
     .philosophy, .random-facts{
         padding:0.5rem;
     }
+    .philosophy>div , .philosophy>ul {
+        margin-top:0;
+    }
+    .about-lists{
+        margin-top: 6rem;
+    }
+    .about-lists > ul > li{
+        
+        font-size: 1.3rem;
+    }
+    .philosophy{
+        background-position: center;
+    }
+
    
     .random-header{
         margin-right:0;

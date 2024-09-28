@@ -57,7 +57,7 @@ anitmatedPosts.forEach((el) => observer.observe(el));
 //auto type for header
 var autoType = document.querySelector(".auto-type");
 new Typed(autoType, {
-  strings: ["Growth", "love", "Groundness"],
+  strings: ["Reflections from My Journey","Whispers of My Heart and Mind", "A Glimpse into My Inner Worl"],
   typeSpeed: 60,
   backSpeed: 60,
   loop: true,

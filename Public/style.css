@@ -28,7 +28,7 @@ h1 {
 }
 
 p {
-  font-family: "Merriweather";
+  
   font-size: 1.5rem;
   line-height: 1.5em;
 }
@@ -218,10 +218,10 @@ p {
 }
 
 .a-post-box > h2 {
-  margin: 0;
   padding: 1.3rem;
   grid-row: 1/3;
   grid-column: 2/4;
+  margin-bottom: 2rem;
 }
 .a-post-box > p {
   font-size: 1rem;
@@ -358,8 +358,9 @@ i.fa{
 
 .copy-right {
   background-color: #000000;
-  color: #ffff;
+  color: #c1c1c1;
   text-align: center;
+  line-height: 1.5;
 }
 
 #menu-btn{
@@ -463,6 +464,7 @@ i.fa{
   padding:0;
   grid-row: 4/5;
   grid-column: 1/4;
+  margin-top: 5rem;
 }
 .cr-link{
   grid-row: 5/6;

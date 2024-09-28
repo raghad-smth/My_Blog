@@ -11,6 +11,7 @@ body, html {
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 40rem;
+  margin-bottom: 4rem;
 }
 .contact > h2{
     font-size: 2rem;
@@ -81,6 +82,7 @@ input:-webkit-autofill{
   cursor: pointer;
   transition: background-color 0.6s;
   box-shadow: 0 6px 15px rgba(150, 133, 47, 0.7); 
+  font-family: "Merriweather";
 }
 #submit-btn:hover {
   background-color: #96852f;

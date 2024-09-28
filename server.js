@@ -25,12 +25,14 @@ app.get("/", (req, res) => {
 
 app.get("/api/Favposts", (req, res) => {
   knex
-    .select("*")
-    .from("posts")
-    .limit(4)
-    .then((posts) => {
-      res.json(posts);
-    })
+  .select("*")
+  .from("posts")
+  .whereIn("id", [16, 9, 13, 15])
+  .orderByRaw("CASE id WHEN 16 THEN 1 WHEN 9 THEN 2 WHEN 13 THEN 3 WHEN 15 THEN 4 END")
+  .limit(4)
+  .then((posts) => {
+    res.json(posts);
+  })
     .catch((error) => {
       console.error("Error fetching posts:", error);
       res.status(500).send("Internal Server Error");
