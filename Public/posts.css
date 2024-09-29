@@ -2,6 +2,9 @@
   padding: 10rem;
 }
 
+body{
+  overflow-x: hidden;
+}
 .posts-wrapper,
 .post-body-wrapper,
 .comments-section-wrapper {
@@ -270,7 +273,7 @@ form >input:-webkit-autofill {
     width: auto;     
   }
   .comment{
-    width:250px;
+    width:20px;
     padding:0.5rem;
     overflow-x: hidden;
     white-space: normal;
