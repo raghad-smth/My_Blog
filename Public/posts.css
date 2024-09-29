@@ -270,7 +270,7 @@ form >input:-webkit-autofill {
     width: auto;     
   }
   .comment{
-    width:60vw;
+    width:10rem;
     padding:0.5rem;
   }
   .comment-content{
