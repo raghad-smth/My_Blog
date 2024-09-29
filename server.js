@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const db = knex({
   client: "pg",
   connection: {
-    connectionString: process.env.DATABASE_URL || "postgresql://postgres:mHKjXUMtzJwZknGJyyamACMhgyOoKJhw@postgres.railway.internal:5432/railway", 
+    connectionString: process.env.DATABASE_URL || "postgresql://postgres:mHKjXUMtzJwZknGJyyamACMhgyOoKJhw@postgres.railway.internal:5432/railway", // Use DATABASE_URL from environment variables
     ssl: {
       rejectUnauthorized: false, // Necessary for some hosting environments like Railway
     },
@@ -119,14 +119,10 @@ app.get("/post/api/:id", async (req, res) => {
     if (!post) {
       return res.status(404).send("Post not found");
     }
-
-    // Fetch comments associated with the post
     const comments = await db('comments')
       .select("*")
       .where({ post_id: postId })
-      .orderBy("created_at", "asc"); // Optional: order comments by creation date
-
-    // Format dates if necessary
+      .orderBy("created_at", "asc");
     const formattedComments = comments.map(comment => ({
       ...comment,
       created_at: comment.created_at ? comment.created_at.toISOString().split('T')[0] : null
