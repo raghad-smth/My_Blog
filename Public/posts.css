@@ -158,7 +158,6 @@ button{
   font-size: 1rem;
   letter-spacing: 0.03rem;
   line-height: 1.1;
-  
 }
 .user-name {
   margin-top: 3px;
@@ -271,8 +270,11 @@ form >input:-webkit-autofill {
     width: auto;     
   }
   .comment-content{
-    width: 80vw;
+    width: 60%;
     padding:0.5rem;
+    overflow: hidden;
+    white-space: normal;
+    word-wrap: break-word;
     overflow-wrap: break-word;
   }
   .first-row{
