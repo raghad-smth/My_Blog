@@ -269,9 +269,11 @@ form >input:-webkit-autofill {
   .post-img-warpper > img {
     width: auto;     
   }
-  .comment-content{
-    width: 40vw;
+  .comment{
+    width:60vw;
     padding:0.5rem;
+  }
+  .comment-content{
     overflow: hidden;
     white-space: normal;
     word-wrap: break-word;
