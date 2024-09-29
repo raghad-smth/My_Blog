@@ -272,7 +272,7 @@ form >input:-webkit-autofill {
   .comment{
     width:250px;
     padding:0.5rem;
-    overflow: hidden;
+    overflow-x: hidden;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -281,7 +281,11 @@ form >input:-webkit-autofill {
     grid-template-columns: 1fr;
     padding:4rem 0.5rem;
   }
-  .comments-section-wrapper button {
+  .comments-section-wrapper{
+    overflow-x: hidden;
+  }
+  .comments-section-wrapper
+   button {
     font-size: 0.9rem;
   }
   
