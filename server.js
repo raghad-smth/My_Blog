@@ -33,12 +33,12 @@ const db = knex({
 app.use(express.static(path.join(__dirname, "Public")));
 
 // Route: Home Page
-app.get("/", (req, res) => {
+app.get("https://raghoodi-production.up.railway.app/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Route: Favorite Posts
-app.get("/api/Favposts", async (req, res) => {
+app.get("https://raghoodi-production.up.railway.app/api/Favposts", async (req, res) => {
   try {
     const posts = await db('posts')
       .select("*")
@@ -54,7 +54,7 @@ app.get("/api/Favposts", async (req, res) => {
 });
 
 // Route: Latest Posts
-app.get("/api/latestPosts", async (req, res) => {
+app.get("https://raghoodi-production.up.railway.app/api/latestPosts", async (req, res) => {
   try {
     const posts = await db('posts')
       .select("*")
@@ -74,7 +74,7 @@ app.get("/api/latestPosts", async (req, res) => {
 });
 
 // Route: About Page
-app.get("/about", (req, res) => {
+app.get("https://raghoodi-production.up.railway.app/about", (req, res) => {
   res.sendFile(path.join(__dirname, "about.html"));
 });
 
