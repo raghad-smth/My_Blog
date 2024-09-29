@@ -266,10 +266,9 @@ form >input:-webkit-autofill {
 @media (max-width: 870px) {
   .post-img-warpper > img {
     width: auto;     
-    height: 220px; 
   }
   .comment{
-    min-width: 0px;
+    min-width: 80vw;
   }
   .first-row{
     grid-template-columns: 1fr;
