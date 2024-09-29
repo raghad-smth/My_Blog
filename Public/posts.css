@@ -271,9 +271,9 @@ form >input:-webkit-autofill {
     width: auto;     
   }
   .comment-content{
-    min-width: 80vw;
+    width: 80vw;
     padding:0.5rem;
-    overflow-wrap:break-word;
+    overflow-wrap: break-word;
   }
   .first-row{
     grid-template-columns: 1fr;
