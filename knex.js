@@ -4,7 +4,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      connectionString: process.env.DATABASE_URL || 'postgres://localhost/my_database',
+      connectionString: process.env.DATABASE_URL || 'postgresql://postgres:mHKjXUMtzJwZknGJyyamACMhgyOoKJhw@postgres.railway.internal:5432/railway',
       ssl: {
         rejectUnauthorized: false, // Necessary for some hosting environments
       },
@@ -13,9 +13,9 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      connectionString: process.env.DATABASE_URL,
+      connectionString: process.env.DATABASE_URL, // Ensure DATABASE_URL is set in your environment variables
       ssl: {
-        rejectUnauthorized: false,
+        rejectUnauthorized: false, // Necessary for some hosting environments
       },
     },
   },
