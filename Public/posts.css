@@ -87,6 +87,10 @@
   border-bottom: 3px solid black;
 }
 
+button{
+  color:black;
+}
+
 .post-content-warapper {
   max-width: 100ch;
   padding: 1rem;
@@ -245,7 +249,6 @@ form >input:-webkit-autofill {
   grid-column: 1/-1;
   align-self: end;
   justify-self: end;
-
 }
 
 .reply-btn {
@@ -268,6 +271,8 @@ form >input:-webkit-autofill {
   }
   .comment{
     min-width: 80vw;
+    padding:0.5rem;
+    overflow-wrap:break-word;
   }
   .first-row{
     grid-template-columns: 1fr;
@@ -276,4 +281,9 @@ form >input:-webkit-autofill {
   .comments-section-wrapper button {
     font-size: 0.9rem;
   }
+  
+button{
+  color:black;
+}
+
 }
