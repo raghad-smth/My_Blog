@@ -3,26 +3,30 @@ const path = require("path");
 const cors = require("cors");
 const bodyParser = require('body-parser');
 const knex = require("knex");
+require('dotenv').config(); // Load environment variables
+
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Configure Knex with enhanced pool settings
+// Configure Knex
 const db = knex({
   client: "pg",
   connection: {
-    host: "raghoodi-production.up.railway.app",
-    port: 5432,
-    user: "postgres",
-    password: "Iaminlovewithjoy<3.",
-    database: "my_blog",
+    connectionString: process.env.DATABASE_URL || "postgresql://postgres:mHKjXUMtzJwZknGJyyamACMhgyOoKJhw@postgres.railway.internal:5432/railway", 
+    ssl: {
+      rejectUnauthorized: false, // Necessary for some hosting environments like Railway
+    },
   },
   pool: {
-    min: 2, // Minimum number of connections
-    max: 20, // Maximum number of connections
-    acquireTimeoutMillis:300000, // Adjust as needed
-  }
+    min: 2,
+    max: 10,
+    acquireTimeoutMillis: 30000, // 30 seconds
+    createTimeoutMillis: 30000,
+    destroyTimeoutMillis: 5000,
+    idleTimeoutMillis: 30000,
+  },
 });
 
 // Serve static files from the "Public" directory
@@ -207,7 +211,7 @@ app.get("/contact", (req, res) => {
 // Start the Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log('Server is running on port ${PORT}');
+  console.log(`Server is running on port ${PORT}`); // Use backticks for template literals
 });
 
 // Handle graceful shutdown
