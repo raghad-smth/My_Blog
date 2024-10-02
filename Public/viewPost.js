@@ -59,8 +59,8 @@ commentsButton.addEventListener('click', () => {
                         <div class="comment">
                             <h4 class="user-name">${comment.name}</h4>
                             <p class="comment-content">${comment.comment}</p>
-                            <div class="date">${comment.created_at.split('T')[0]}</div>
                         </div>
+                        <div class="date">${comment.created_at.split('T')[0]}</div>
                     `).join('') 
                     : `<p>No comments on this post. Be the first to comment!</p>`}
             </div>
