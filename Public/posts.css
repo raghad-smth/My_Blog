@@ -121,12 +121,14 @@ button{
   display: flex;
   flex-direction: column;
 }
+
 .comment {
   position: relative;
   padding: 4px;
   margin: 15px;
-  width: 40vw;
-  max-height: 15vh;
+  width: 40vw; /* Adjust width as needed */
+  max-height: 15vh; /* Limit height */
+  overflow: auto; /* Enable scrolling for overflowing content */
   min-width: 400px;
   background-color: #ced16b;
   border-radius: 50px;
@@ -154,17 +156,20 @@ button{
   font-size: 1.2rem;
 }
 
+
 .comment-content {
   font-size: 1rem;
-  width: 100%;
-  margin-left:25px;
+  margin-left: 25px;
+  overflow: hidden; /* Prevent overflow */
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Support for wrapping */
 }
 
 .date {
-  margin: 15px 10px;
   text-align: end;
   padding: 0;
-  color: rgb(114, 113, 113);
+  color: rgb(37, 37, 37);
 }
 
 .comments-section-wrapper {
@@ -259,12 +264,9 @@ form >input:-webkit-autofill {
     width: auto;     
   }
   .comment{
-    width:20px;
-    padding:0.5rem;
-    overflow-x: hidden;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+      width: 100%; 
+      padding: 0.5rem; 
+      min-width: auto; 
   }
   .comment-content {
     margin-left:5px;
