@@ -36,6 +36,11 @@ This blog project is the realization of that dream. I built everything from scra
 - Railway (for hosting)
 
 
+## 🎥 Preview Video
+
+The website is no longer hosted online, but you can still check out the full experience through this preview video:
+
+ [**Watch the demo here**] : https://drive.google.com/file/d/1U__ftaaP_V7nJUcpBuo9VBP4ZAQ6scWM/view?usp=sharing
 
 ## Final Note
 
